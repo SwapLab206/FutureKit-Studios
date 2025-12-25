@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import episodes from "../data/episodes.json";
+---
+<Base title="Episodes — FutureKit Studios">
+  <h1>Episodes</h1>
+  <div class="grid cols-3">
+    {episodes.map(e => (
+      <a class="card" href={`/episodes/${e.slug}`}>
+        <h3 style="margin:0 0 6px 0">{e.title}</h3>
+        <div class="badge">{e.date} · {e.duration}</div>
+        <p style="color:var(--muted);margin-top:8px">{e.summary}</p>
+      </a>
+    ))}
+  </div>
+</Base>

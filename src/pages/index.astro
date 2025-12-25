@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro";
+import episodes from "../data/episodes.json";
+const latest = episodes[0];
+---
+<Base title="FutureKit Studios — Show">
+  <section class="card hero">
+    <h1>FutureKit Show</h1>
+    <p>Free-to-access series on building systems that support family and community.</p>
+    <div><a class="badge" href="/episodes">Browse episodes</a></div>
+  </section>
+  {latest && (
+    <>
+      <h2 style="margin-top:24px">Latest Episode</h2>
+      <div class="card">
+        <h3 style="margin:0 0 8px 0">{latest.title}</h3>
+        <div class="badge">{latest.date} · {latest.duration}</div>
+        <div style="margin-top:12px;aspect-ratio:16/9">
+          <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${latest.youtubeId}`} title={latest.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p style="margin-top:12px;color:var(--muted)">{latest.summary}</p>
+        <a href={`/episodes/${latest.slug}`}>Open episode →</a>
+      </div>
+    </>
+  )}
+</Base>

@@ -1,0 +1,28 @@
+---
+const { title = "FutureKit Studios", description = "Free community-first show" } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <header class="container header">
+      <a href="/" style="font-weight:800;letter-spacing:.4px">FutureKit Studios</a>
+      <nav>
+        <a href="/episodes">Episodes</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="container">
+      © {new Date().getFullYear()} FutureKit Studios — Built with Astro · Free to access
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+---
+import Base from "../../layouts/Base.astro";
+import episodes from "../../data/episodes.json";
+const { slug } = Astro.params;
+const ep = episodes.find(e => e.slug === slug);
+if (!ep) { throw new Error("Episode not found"); }
+---
+<Base title={`${ep.title} — FutureKit Studios`}>
+  <a href="/episodes">← Back to episodes</a>
+  <h1 style="margin:10px 0 0 0">{ep.title}</h1>
+  <div class="badge">{ep.date} · {ep.duration}</div>
+  <div style="margin-top:12px;aspect-ratio:16/9">
+    <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${ep.youtubeId}`} title={ep.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <p style="margin-top:12px;color:var(--muted)">{ep.summary}</p>
+  <div style="margin-top:10px">
+    {ep.tags.map(t => <span class="badge" style="margin-right:6px">{t}</span>)}
+  </div>
+</Base>
